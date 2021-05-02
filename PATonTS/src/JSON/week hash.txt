@@ -1,0 +1,7 @@
+0;lunedi
+1;martedi
+2;mercoledi
+3;giovedi
+4;venerdi
+5;sabato
+6;domenica
