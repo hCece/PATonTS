@@ -6,19 +6,17 @@ import TeleBot.TeleBot;
 import javafx.stage.Stage;
 import javafx.scene.Scene;
 
-
+/**
+ * This is a simple Main class that starts two processes: TeleBot and the JAVAfx project. 
+ * I used some simple Threads implementation two run both processes at the same time.
+ * 
+ */
 public class Main extends Application implements Runnable {
-
 	TeleBot teleBot = new TeleBot();
-    boolean running = true;
 	@Override	
 	public void start(Stage primaryStage) throws Exception {
-		/*
 		FXMLLoader loader = new FXMLLoader(getClass().getResource("/login.fxml"));
 		loader.setController(new ControllerLogIn());
-		*/
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/register.fxml"));
-		loader.setController(new ControllerRegistration());
 		Scene logInScene = loader.load();
 		primaryStage.setScene(logInScene);
 		primaryStage.show();

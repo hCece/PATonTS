@@ -71,24 +71,20 @@ public class JSONBin {
 		  }
 	}
 	private JSONObject getJSON(String ID)  {
-		URL obj;
+		HttpURLConnection con;
 		try {
-			obj = new URL(URL + ID + "/latest");
-			HttpURLConnection con;
+			URL obj = new URL(URL + ID + "/latest");
 			con = (HttpURLConnection) obj.openConnection();
 			con.setRequestMethod("GET");
 			con.setRequestProperty("X-Master-Key", MASTER_KEY);
-
 			System.out.println("Response Code : " + con.getResponseCode());
-
 		
 			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
-
 			String output;
 			StringBuffer response = new StringBuffer();
-
 			while ((output = in.readLine()) != null) {response.append(output);}
 			in.close();
+			
 			JSONObject jo = new JSONObject(response.toString());
 			for(int i = 0; i<jo.names().length(); i++){
 				String keyTmp;
