@@ -15,6 +15,7 @@ public class JSONPreference {
 		try {
 			ArrayList<String> returnValue = new ArrayList<String>();
 			jo = jsonBin.getPreferences();
+			System.out.println(jo);
 			Iterator<String> keys = jo.keys();
 			JSONObject joUser = new JSONObject();
 			while(keys.hasNext()) {
@@ -65,25 +66,24 @@ public class JSONPreference {
 		}
 		
 	}
-	
+	//key --> places or weekDays
 	public HashMap<String, String> getPreference(String IDAct, String IDUser, String key) {
 		jo = jsonBin.getPreferences();
 		JSONObject joAct = jsonBin.getActivity();
 		HashMap<String, String> returnValue = new HashMap<String, String>();
 		try {
-			System.out.println(jo.getJSONObject(IDAct).getJSONObject(IDUser).toString());
 			JSONArray ja = jo.getJSONObject(IDAct).getJSONObject(IDUser).getJSONArray(key);
 			JSONActivity jsonAct = new JSONActivity();
 			String value;
 			for(int i=0; i < ja.length(); i++) {
 				value = joAct.getJSONObject(IDAct).getJSONArray(key).get(ja.getInt(i)).toString();
 				if(key.equals("weekDays")) {
-					System.out.println(value);
 					String[] time = value.split(";");
-					value = jsonAct.getWeekDay(time[0]) + " " + time[1];
+					value = jsonAct.getWeekDay(Integer.parseInt(time[0])) + " " + time[1];
 				}
 				returnValue.put(ja.get(i).toString(), value);
 			}
+			
 			return returnValue;
 		} catch (JSONException e) {
 			e.printStackTrace();

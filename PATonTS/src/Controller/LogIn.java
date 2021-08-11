@@ -1,5 +1,6 @@
-package application;
+package Controller;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -18,13 +19,13 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
-public class ControllerLogIn {
+public class LogIn {
     @FXML
     private Button btn;
     @FXML
     private TextField username;
     @FXML
-    private PasswordField password;
+    private PasswordField password;	
     @FXML
     private Label lbl;
     @FXML
@@ -32,23 +33,32 @@ public class ControllerLogIn {
 
     @FXML
     void goToNewAccount(MouseEvent event) throws IOException {
-
-		FXMLLoader loader = new FXMLLoader(getClass().getResource("/register.fxml"));
-    	loader.setController(new ControllerRegistration());
+		FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/register.fxml"));
+    	loader.setController(new Registration());
     	Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
     	stage.setScene(loader.load());
     	stage.show();
     }
     
     public void initialize() throws FileNotFoundException {
-    	imgUni.setImage(new Image(new FileInputStream("./src/download.jpg")));
+    	imgUni.setImage(new Image(new FileInputStream("./src/View/jpg/logo.jpg")));
     }
     
-    @FXML
-    void getData(ActionEvent event) {
+    //checks if the loginData is correct, if so it will load the main scene of the project
+    @FXML void getData(ActionEvent event) {
 		System.out.println(password.getText() + " : "+ password.getText().hashCode());
     	JSONUser jsonUser = new JSONUser();
-    	System.out.println(jsonUser.isLoginSame(username.getText(), password.getText().hashCode()));
+    	if(jsonUser.isLoginSame(username.getText(), password.getText().hashCode()))
+    	{	FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/mainScene.fxml"));
+    		String userID = jsonUser.findUserID("username",username.getText());
+	    	loader.setController(new MainScene(userID));
+	    	Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+	    	try {
+				stage.setScene(loader.load());
+			} catch (IOException e) {e.printStackTrace();}
+	    	stage.show();
+    		
+    	}
     }
     
     

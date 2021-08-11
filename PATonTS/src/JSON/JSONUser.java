@@ -51,7 +51,7 @@ public class JSONUser {
 		String key;
 		try {
 			key = jo.names().getString(0);
-		
+			
 			for(int i = 1; i<jo.names().length(); i++){
 				String keyTmp =  jo.names().getString(i);		
 				if(keyTmp.compareTo(key) > 0) 
@@ -96,6 +96,7 @@ public class JSONUser {
 		try {
 			jo = jsonBin.getUser();
 			String UserID = findUserID("username", username);
+			System.out.println(UserID);
 			if (UserID == null)
 				System.err.println("Questo username non esiste");
 			((JSONObject) jo.get(UserID)).put("idTelegram", TeleID);
@@ -112,10 +113,17 @@ public class JSONUser {
 				String keyTmp = jo.names().getString(i);
 				if(keyTmp.contains("U_")) {
 					JSONObject joTmp =  (JSONObject) jo.get(jo.names().getString(i));
-					if(value.equals(Integer.toString(joTmp.getInt(key)))) {
-						return keyTmp;
+					//There is only String or Integers as keys, so if there is a JSONException in getString it has to be an getInt
+					try {
+						if(value.equals(joTmp.getString(key))) {
+							return keyTmp;
+						}
+					}catch(JSONException e) {
+						if(value.equals(Integer.toString(joTmp.getInt(key)))){
+							return keyTmp;
+						}
 					}
-				}					
+				}			
 			} 
 		}catch (JSONException e) {
 			e.printStackTrace();

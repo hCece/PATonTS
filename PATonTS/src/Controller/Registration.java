@@ -1,4 +1,4 @@
-package application;
+package Controller;
 
 import java.io.IOException;
 
@@ -12,33 +12,20 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class ControllerRegistration {
+public class Registration {
 
-    @FXML
-    private TextField email;
-
-    @FXML
-    private TextField password;
-
-    @FXML
-    private TextField username;
-
-    @FXML
-    private TextField password2;
-
-    @FXML
-    private Button setUserBtn;
-
-    @FXML
-    private Label lblError;
-
-    @FXML
-    private Button BtnSgnIn;
+    @FXML private TextField email;
+    @FXML private TextField password;
+    @FXML private TextField username;
+    @FXML private TextField password2;
+    @FXML private Button setUserBtn;
+    @FXML private Label lblError;
+    @FXML private Button BtnSgnIn; 
 
     @FXML
     void goToSignIn(ActionEvent event) throws IOException {
-    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/login.fxml"));
-    	loader.setController(new ControllerLogIn());
+    	FXMLLoader loader = new FXMLLoader(getClass().getResource("/View/login.fxml"));
+    	loader.setController(new LogIn());
     	Stage stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
     	stage.setScene(loader.load());
     	stage.show();
@@ -55,7 +42,8 @@ public class ControllerRegistration {
 				e.printStackTrace();
 			}
 		else
-    		System.err.println("Le password non sono uguali");
+			//TODO: set it to a label
+    		System.err.println("The passwords are not the same");
     
     }
     

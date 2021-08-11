@@ -10,9 +10,9 @@
 <Scene xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
    <AnchorPane layoutX="-7.0" layoutY="-6.0" onDragDetected="#goToSignIn" prefHeight="318.0" prefWidth="608.0">
       <children>
-         <TextField fx:id="email" layoutX="253.0" layoutY="154.0" prefHeight="25.0" prefWidth="259.0" promptText="email" />
+      	 <TextField fx:id="username" layoutX="83.0" layoutY="154.0" promptText="Username" />
+      	 <TextField fx:id="email" layoutX="253.0" layoutY="154.0" prefHeight="25.0" prefWidth="259.0" promptText="email" />
          <TextField fx:id="password" layoutX="83.0" layoutY="197.0" prefHeight="25.0" prefWidth="206.0" promptText="Password" />
-         <TextField fx:id="username" layoutX="83.0" layoutY="154.0" promptText="Username" />
          <TextField fx:id="password2" layoutX="304.0" layoutY="197.0" prefHeight="25.0" prefWidth="206.0" promptText="Password" />
          <Label layoutX="230.0" layoutY="58.0" prefHeight="38.0" prefWidth="149.0" text="Registrazione">
             <font>

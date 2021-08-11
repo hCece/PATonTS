@@ -69,6 +69,7 @@ public class TeleBot {
 	 */
 	protected void sendMessage(String message[]) {
 		try {
+			System.out.println(URL + "/sendMessage?chat_id=" + message[0] + "&text=" + message[1]);
 			URL obj = new URL(URL + "/sendMessage?chat_id=" + message[0] + "&text=" + message[1]);
 			HttpURLConnection con = (HttpURLConnection) obj.openConnection();
 			// Send post request
@@ -76,7 +77,9 @@ public class TeleBot {
 			DataOutputStream wr = new DataOutputStream(con.getOutputStream());
 			wr.flush();
 			wr.close();
-			System.out.println("Response Code : " + con.getResponseCode());
+
+			//TODO: set up a log for this message 
+			//System.out.println("Response Code : " + con.getResponseCode());
 			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 			String output;
 			StringBuffer response = new StringBuffer();
@@ -97,15 +100,16 @@ public class TeleBot {
 	
 
 	/* getMessage() is reading the not responded messages to the bot at once. 
-	 * The return will be a String array with in it's first element the telegram user ID and in the second String the message+ 
+	 * The return will be a String array with in it's first element the telegram user ID and in the second String the message 
 	 */
-	private String[] getMessage()  {
+	private String[] getMessage()  {	
 		HttpURLConnection con;
 		try {
 			URL obj = new URL(URL + "/getUpdates");
 			con = (HttpURLConnection) obj.openConnection();
 			con.setRequestMethod("GET");
-			System.out.println("Response Code : " + con.getResponseCode());
+			//TODO: set up a log for this message 
+			//System.out.println("Response Code : " + con.getResponseCode());
 			
 			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 			String output;

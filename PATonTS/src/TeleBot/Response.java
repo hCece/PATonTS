@@ -2,13 +2,16 @@ package TeleBot;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 import java.util.Map.Entry;
 
 import org.json.JSONArray;
@@ -30,18 +33,25 @@ public class Response {
 		JSONBin jsonBin = new JSONBin();
 		JSONUser jsonUser = new JSONUser();
 		ArrayList<String> list = new ArrayList<String>(jsonUser.getValue(jsonBin.getUser(), "idTelegram"));
-		if (!list.contains(message[0])) {
+		if (!isInList(list, message[0])) {
+			System.out.println(isPossibleUser(message[0]));
 			if (!isPossibleUser(message[0])) {
 				message[1] = "Non ti conosco. Inserisci le tue credenziali con la seguente sintassi: [username];[password]";
 				setPossibleUser(message[0]);
 			} else {
-				String[] credentials = message[1].split(";");
-				boolean loginSame = jsonUser.isLoginSame(credentials[0], credentials[1].hashCode());
+				boolean loginSame = false;
+				String[] credentials = new String[2];
+				try {
+					credentials = message[1].split(";");
+					loginSame = jsonUser.isLoginSame(credentials[0], credentials[1].hashCode());
+				}catch(ArrayIndexOutOfBoundsException e) {}
+				
 				if (loginSame) {
 					message[1] = "Accesso riuscito. Ciao " + credentials[0] + " :). %0A"
 							+ "Ti consiglio di cancellare il tuo ultimo messaggio per la tua sicurezza. %0A";
 					message[1] = message[1] + HELP;
 					jsonUser.setTelegramID(credentials[0], Integer.parseInt(message[0]));
+					deletePossibleUser(message[0]);
 				} else
 					message[1] = "username o password sono errate. Riprova!";
 			}
@@ -89,6 +99,26 @@ public class Response {
 		return message;
 	}
 	
+	
+	private boolean isInList(ArrayList<String> list, String id) {
+		for(String tmp: list) {
+			if(tmp.equals(id))
+				return true;
+		}
+		return false;
+	}
+	
+	private void deletePossibleUser(String ID){
+		try {
+		    File file = new File("./src/TeleBot/possibleUser.txt");
+		    List<String> out = Files.lines(file.toPath())
+		                        .filter(line -> !line.contains(ID))
+		                        .collect(Collectors.toList());
+		    Files.write(file.toPath(), out, StandardOpenOption.WRITE, StandardOpenOption.TRUNCATE_EXISTING);
+		}catch(IOException e) {
+			e.printStackTrace();
+		}
+	}
 	
 
 	private String inlineActivity(ArrayList<String> idActivity,ArrayList<JSONObject> activities, String key) {
@@ -147,11 +177,7 @@ public class Response {
 		msgTmp = msgTmp.replace("duration", "*Durata*");
 		msgTmp += "&parse_mode=Markdown";
 		return msgTmp;
-	}
-
-	
-
-	
+	}	
 	private String beginInlineRes(String key) {
 		String replyMarkup = "";
 		if(key.equals("places"))
@@ -198,7 +224,7 @@ public class Response {
 	private void setPossibleUser(String ID) {
 		String IDTmp = ID + "\n";
 		try {
-			Files.write(Paths.get("./src/possibleUser.txt"), IDTmp.getBytes(), StandardOpenOption.APPEND);
+			Files.write(Paths.get("./src/TeleBot/possibleUser.txt"), IDTmp.getBytes(), StandardOpenOption.APPEND);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}

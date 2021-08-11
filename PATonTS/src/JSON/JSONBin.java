@@ -9,6 +9,10 @@ import java.net.URL;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+
+/* The class JSONBin is the middle-man between the JSONBin requests and all other JSON classes from this package.
+ * JSONBin makes the GET and SET requests for the other JSON classes
+ */
 public class JSONBin {
 
 	private final String MASTER_KEY = "$2b$10$.22MkZ49mEZBvIq.UVQzfO1PNcDXQ3HQYYuVElCjRtVU03Mx.UHiC";
@@ -73,18 +77,20 @@ public class JSONBin {
 	private JSONObject getJSON(String ID)  {
 		HttpURLConnection con;
 		try {
-			URL obj = new URL(URL + ID + "/latest");
+			URL obj = new URL(URL + ID + "/latest"); 
 			con = (HttpURLConnection) obj.openConnection();
 			con.setRequestMethod("GET");
 			con.setRequestProperty("X-Master-Key", MASTER_KEY);
 			System.out.println("Response Code : " + con.getResponseCode());
 		
+			//changing the response from BufferReader to StringBuffeer
 			BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
 			String output;
 			StringBuffer response = new StringBuffer();
 			while ((output = in.readLine()) != null) {response.append(output);}
 			in.close();
 			
+			//Trimming the JSONObject to just the JSONdata
 			JSONObject jo = new JSONObject(response.toString());
 			for(int i = 0; i<jo.names().length(); i++){
 				String keyTmp;
@@ -94,7 +100,6 @@ public class JSONBin {
 					return new JSONObject(valueTmp);
 				}
 			}
-			
 		} catch (JSONException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
