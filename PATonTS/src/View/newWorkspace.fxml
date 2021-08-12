@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <SplitPane dividerPositions="0.4119205298013245" layoutX="313.0" layoutY="125.0" prefHeight="400.0" prefWidth="625.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+               	  <TextField fx:id="lblName" layoutX="14.0" layoutY="58.0" promptText="Name" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="50.0" />
+                  <TextField fx:id="lblDescription" layoutX="20.0" layoutY="108.0" promptText="Description" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="50.0" />
+                  <Button fx:id="btnSetActivity" layoutX="256.0" layoutY="155.0" mnemonicParsing="false" onAction="#setActivity" text="set" AnchorPane.rightAnchor="20.0" />
+                  <Button layoutX="20.0" layoutY="237.0" mnemonicParsing="false" onAction="#toJSON" text="Done!" AnchorPane.leftAnchor="20.0" />
+                  <ComboBox fx:id="cmbActivity" layoutX="20.0" layoutY="155.0" prefWidth="150.0" promptText="Activity" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="60.0" />
+               </children>
+            </AnchorPane>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+               <children>
+                  <ListView fx:id="lstActivity" layoutX="19.0" layoutY="22.0" prefHeight="200.0" prefWidth="453.0" AnchorPane.bottomAnchor="20.0" AnchorPane.leftAnchor="15.0" AnchorPane.rightAnchor="15.0" AnchorPane.topAnchor="20.0" />
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>

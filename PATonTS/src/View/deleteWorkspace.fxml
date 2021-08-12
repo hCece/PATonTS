@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="147.0" prefWidth="249.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ComboBox fx:id="cmbWorkspace" layoutX="33.0" layoutY="25.0" prefWidth="150.0" promptText="Workspace" />
+      <Button fx:id="btnDelete" layoutX="33.0" layoutY="98.0" mnemonicParsing="false" onAction="#deleteWorkspace" text="Delete" />
+   </children>
+</AnchorPane>

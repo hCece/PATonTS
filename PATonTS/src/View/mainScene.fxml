@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Scene?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<Scene xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1">
+    <AnchorPane prefHeight="509.0" prefWidth="801.0">
+      <children>
+         <MenuBar layoutY="2.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+           <menus>
+             <Menu mnemonicParsing="false" text="File">
+               <items>
+                     <Menu mnemonicParsing="false" text="Set &amp; Remove">
+                        <items>
+                           <MenuItem mnemonicParsing="false" text="Activity" />
+                           <MenuItem mnemonicParsing="false" text="Workspace" />
+                        </items>
+                     </Menu>
+                     <Menu mnemonicParsing="false" text="New">
+                        <items>
+                           <MenuItem fx:id="mnNewPreference" mnemonicParsing="false" onAction="#newPreferenceWindow" text="Preference" />
+                           <MenuItem fx:id="mnNewActivity" mnemonicParsing="false" onAction="#newActivityWindow" text="Activity" />
+                           <MenuItem fx:id="mnNewWorkspace" mnemonicParsing="false" onAction="#newWorkspaceWindow" text="Workspace" />
+                        </items>
+                     </Menu>
+                     <Menu mnemonicParsing="false" text="Edit">
+                        <items>
+                           <MenuItem mnemonicParsing="false" text="Preference" />
+                           <MenuItem mnemonicParsing="false" text="Activity" />
+                           <MenuItem mnemonicParsing="false" text="Workspace" />
+                           <MenuItem mnemonicParsing="false" text="User" />
+                        </items>
+                     </Menu>
+                     <Menu mnemonicParsing="false" text="Delete">
+                        <items>
+                           <MenuItem mnemonicParsing="false" text="Preference" />
+                           <MenuItem mnemonicParsing="false" text="Activity" />
+                           <MenuItem mnemonicParsing="false" onAction="#deleteWorkspaceWindow" text="Workspace" />
+                           <MenuItem mnemonicParsing="false" text="User" />
+                        </items>
+                     </Menu>
+                     <MenuItem mnemonicParsing="false" text="Log out" />
+                 <MenuItem mnemonicParsing="false" text="Close" />
+               </items>
+             </Menu>
+             <Menu mnemonicParsing="false" text="Help">
+               <items>
+                 <MenuItem mnemonicParsing="false" text="About" />
+               </items>
+             </Menu>
+           </menus>
+         </MenuBar>
+         <SplitPane dividerPositions="0.25" layoutX="6.0" layoutY="60.0" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="55.0">
+           <items>
+             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                  <children>
+                     <ListView fx:id="lstWorkspace" prefHeight="443.0" prefWidth="219.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0" />
+                     <Label alignment="CENTER" text="Workspace" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
+                        <font>
+                           <Font size="15.0" />
+                        </font>
+                     </Label>
+                  </children>
+               </AnchorPane>
+             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                  <children>
+                     <SplitPane dividerPositions="0.33965244865718797" prefHeight="443.0" prefWidth="521.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                       <items>
+                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                              <children>
+                                 <ListView fx:id="lstActivity" prefHeight="441.0" prefWidth="242.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="25.0" />
+                                 <Label alignment="CENTER" text="Activity" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
+                                    <font>
+                                       <Font size="15.0" />
+                                    </font>
+                                 </Label>
+                              </children>
+                           </AnchorPane>
+                         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                              <children>
+                                 <SplitPane dividerPositions="0.53" layoutX="21.0" layoutY="79.0" orientation="VERTICAL" prefHeight="441.0" prefWidth="262.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                   <items>
+                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                          <children>
+                                             <Label alignment="CENTER" text="Time" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
+                                                <font>
+                                                   <Font size="15.0" />
+                                                </font>
+                                             </Label>
+                                             <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="22.0">
+                                               <items>
+                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                      <children>
+                                                         <ListView fx:id="lstTimeUnselected" layoutX="-5.0" layoutY="-1.0" prefHeight="197.0" prefWidth="190.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0" />
+                                                         <Label alignment="CENTER" layoutX="81.0" text="Unselected" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                      </children>
+                                                   </AnchorPane>
+                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                      <children>
+                                                         <ListView fx:id="lstTimeSelected" layoutX="-33.0" layoutY="-3.0" prefHeight="197.0" prefWidth="189.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="15.0" />
+                                                         <Label alignment="CENTER" text="Selected" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                      </children>
+                                                   </AnchorPane>
+                                               </items>
+                                             </SplitPane>
+                                          </children>
+                                       </AnchorPane>
+                                     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                          <children>
+                                             <Label alignment="CENTER" text="Place" textAlignment="CENTER" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="1.0">
+                                                <font>
+                                                   <Font size="15.0" />
+                                                </font>
+                                             </Label>
+                                             <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="22.0">
+                                                <items>
+                                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                      <children>
+                                                         <ListView fx:id="lstPlaceUnselected" layoutX="-5.0" layoutY="-1.0" prefHeight="197.0" prefWidth="190.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                      </children>
+                                                   </AnchorPane>
+                                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                                      <children>
+                                                         <ListView fx:id="lstPlaceSelected" layoutX="-25.0" layoutY="-1.0" prefHeight="197.0" prefWidth="189.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0" />
+                                                      </children>
+                                                   </AnchorPane>
+                                                </items>
+                                             </SplitPane>
+                                          </children>
+                                       </AnchorPane>
+                                   </items>
+                                 </SplitPane>
+                              </children>
+                           </AnchorPane>
+                       </items>
+                     </SplitPane>
+                  </children>
+               </AnchorPane>
+           </items>
+         </SplitPane>
+         <Label fx:id="lblUser" alignment="CENTER" layoutX="387.0" layoutY="32.0" text="Hi, User" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="26.0">
+            <font>
+               <Font size="18.0" />
+            </font>
+         </Label>
+      </children></AnchorPane>
+</Scene>
